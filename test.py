@@ -20,11 +20,11 @@ publisher = Publisher(username=username, password=password, host=host, port=port
 #                   'data': {'username': 'gluon', 'password': 'password', 'group': 'group_1'}}
 
 # HTTP Actions
-message_action = {'task': 'configure', 'action': 'http', 'method': 'get',
-                  'data': {'url': 'http://10.10.20.125/receive-sms/mo.php', 'method': 'POST', 'client_id': 'gluon_01'}}
+# message_action = {'task': 'configure', 'action': 'http', 'method': 'get',
+#                   'data': {'url': 'http://10.10.20.125/receive-sms/mo.php', 'method': 'POST', 'client_id': 'gluon_01'}}
 
 # SMPP
-# message_action = {'task': 'configure', 'action': 'smpp', 'method': 'start',
+# message_action = {'task': 'configure', 'action': 'smpp', 'method': 'get',
 #                   'data': {'smpp_id': 'smpp_1', 'host': '10.190.10.16', 'port': '8331', 'username': 'gluon',
 #                            'password': 'password'}}
 

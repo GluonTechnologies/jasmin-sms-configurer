@@ -35,6 +35,7 @@ def ack_message(chn, delivery_tag, status=1):
 
 
 def do_work(connection, chn, delivery_tag, body):
+    print("Message", body)
     if jasmin_processor.process(body):
         pass
     else:

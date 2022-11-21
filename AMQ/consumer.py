@@ -10,7 +10,7 @@ class Consumer(ABC, Thread):
         Thread.__init__(self)
         self.credentials = pika.PlainCredentials(username, password)
         self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=host, port=port, credentials=self.credentials,
+            pika.ConnectionParameters(host=host, port=port, credentials=self.credentials, virtual_host=virtual_host,
                                       heartbeat=0))
         self.__channel = self.connection.channel()
         self.__queue = queue if queue is not None else ''.join(random.choice(string.ascii_uppercase) for _ in range(6))

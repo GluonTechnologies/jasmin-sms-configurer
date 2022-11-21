@@ -11,3 +11,4 @@ class Jasmin(object):
         self.telnet.write(self.__user_name.encode('ascii') + b"\n")
         self.telnet.write(self.__password.encode('ascii') + b"\n")
         self.telnet.read_until(b'jcli :')
+        print("Ready Now")
