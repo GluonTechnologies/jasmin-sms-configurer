@@ -6,11 +6,12 @@ import pika
 
 
 class Consumer(ABC, Thread):
-    def __init__(self, username='ADMIN', password='NONE', host='127.0.0.1', port=5672, queue=None):
+    def __init__(self, username='ADMIN', password='NONE', host='127.0.0.1', port=5672, virtual_host='/', queue=None):
         Thread.__init__(self)
         self.credentials = pika.PlainCredentials(username, password)
         self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=host, port=port, credentials=self.credentials, heartbeat=0))
+            pika.ConnectionParameters(host=host, port=port, credentials=self.credentials,
+                                      heartbeat=0))
         self.__channel = self.connection.channel()
         self.__queue = queue if queue is not None else ''.join(random.choice(string.ascii_uppercase) for _ in range(6))
         self.__channel.queue_declare(queue=self.__queue)

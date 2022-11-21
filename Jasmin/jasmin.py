@@ -10,4 +10,4 @@ class Jasmin(object):
         self.telnet.read_until(b'Authentication required.')
         self.telnet.write(self.__user_name.encode('ascii') + b"\n")
         self.telnet.write(self.__password.encode('ascii') + b"\n")
-        # self.telnet.read_until(b'jcli :')
+        self.telnet.read_until(b'jcli :')

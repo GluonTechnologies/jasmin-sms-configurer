@@ -1,4 +1,5 @@
 from Jasmin import Jasmin
+import time
 
 
 class JasminUser(object):
@@ -17,9 +18,25 @@ class JasminUser(object):
         action = 'gid ' + group + '\n'
         self.telnet.write(action.encode('ascii'))
         self.telnet.write(b'ok\n')
+        time.sleep(0.5)
+        print("USER", self.telnet.read_very_eager())
         self.telnet.write(b'persist\n')
+        time.sleep(1)
+        print("USER", self.telnet.read_very_eager())
 
     def remove_user(self, user_id: str):
         action = 'user -r ' + user_id
         self.telnet.write(action.encode('ascii') + b'\n')
+        time.sleep(0.5)
+        print("USER", self.telnet.read_very_eager())
         self.telnet.write(b'persist\n')
+
+    def process_user_action(self, json_action):
+        if str(json_action['method']).lower() == 'add':
+            if not json_action['data'].get('username') is None:
+                self.add_user(username=json_action['data'].get('username'),
+                              password=json_action['data'].get('password'),
+                              group=json_action['data'].get('group'))
+        elif str(json_action['method']).lower() == 'remove':
+            if not json_action['data'].get('username') is None:
+                self.remove_user(json_action['data'].get('username'))

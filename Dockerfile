@@ -11,4 +11,4 @@ ENV TZ=Europe/London
 ENV DEBIAN_FRONTEND=noninteractive
 EXPOSE 5544
 COPY . .
-CMD ["python3", "-u", "./app.py"]
+CMD ["python3", "-u", "./main.py"]
