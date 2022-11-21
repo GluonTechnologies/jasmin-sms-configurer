@@ -25,7 +25,6 @@ def ack_message(chn, delivery_tag, status=1):
             chn.basic_ack(delivery_tag)
     else:
         # Channel is already closed, so we can't ACK this message;
-        # log and/or do something that makes sense for your app in this case.
         pass
 
 
