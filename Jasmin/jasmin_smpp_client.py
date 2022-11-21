@@ -6,6 +6,11 @@ class JasminSmppClient(object):
     def __init__(self, jasmin: Jasmin):
         self.telnet = jasmin.telnet
 
+    def get_smpp_clients(self):
+        self.telnet.write(b'smppccm -l\n')
+        time.sleep(1)
+        return self.telnet.read_very_eager()
+
     def add_smpp(self, username: str, password: str, host: str, port: int,
                  smpp_id: str = 'smpp_1', bind: str = 'transceiver'):
         self.telnet.write(b'smppccm -a\n')
@@ -65,3 +70,5 @@ class JasminSmppClient(object):
         elif str(json_action['method']).lower() == 'remove':
             if not json_action['data'].get('smpp_id') is None:
                 self.remove_smpp_client(json_action['data'].get('smpp_id'))
+        elif str(json_action['method']).lower() == 'get':
+            return {'smpp': str(self.get_smpp_clients())}

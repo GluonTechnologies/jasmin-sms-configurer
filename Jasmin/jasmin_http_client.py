@@ -6,6 +6,11 @@ class JasminHttpClient(object):
     def __init__(self, jasmin: Jasmin):
         self.telnet = jasmin.telnet
 
+    def get_http_client(self):
+        self.telnet.write(b'httpccm -l\n')
+        time.sleep(1)
+        return self.telnet.read_very_eager()
+
     def add_http(self, url: str, client_id: str = 'http_client_1', method: str = 'POST'):
         self.telnet.write(b'httpccm -a\n')
         action = 'cid ' + client_id + '\n'
@@ -36,3 +41,5 @@ class JasminHttpClient(object):
         elif str(json_action['method']).lower() == 'remove':
             if not json_action['data'].get('client_id') is None:
                 self.remove_http_client(json_action['data'].get('client_id'))
+        elif str(json_action['method']).lower() == 'get':
+            return {'http': str(self.get_http_client())}

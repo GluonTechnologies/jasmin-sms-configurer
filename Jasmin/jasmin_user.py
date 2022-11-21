@@ -6,6 +6,11 @@ class JasminUser(object):
     def __init__(self, jasmin: Jasmin):
         self.telnet = jasmin.telnet
 
+    def get_users(self):
+        self.telnet.write(b'user -l\n')
+        time.sleep(1)
+        return self.telnet.read_very_eager()
+
     def add_user(self, username, password, group, user_id=None):
         self.telnet.write(b'user -a\n')
         action = 'username ' + username + '\n'
@@ -40,3 +45,5 @@ class JasminUser(object):
         elif str(json_action['method']).lower() == 'remove':
             if not json_action['data'].get('username') is None:
                 self.remove_user(json_action['data'].get('username'))
+        elif str(json_action['method']).lower() == 'get':
+            return {'users': str(self.get_users())}

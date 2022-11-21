@@ -1,11 +1,10 @@
 import functools
 import os
 import threading
-import AMQ
+from AMQ import Consumer
 from dotenv import load_dotenv
 from Jasmin import Jasmin
 from JasminAdmin import JasminProcess
-from JasminAdmin import JasminAdmin
 
 load_dotenv()
 host = os.getenv('AMPQ_HOST', '127.0.0.1')
@@ -14,9 +13,10 @@ port = os.getenv('AMPQ_PORT', '5672')
 username = os.getenv('AMPQ_USERNAME', 'admin')
 password = os.getenv('AMPQ_PASSWORD', 'password123')
 queueName = os.getenv('AMPQ_QUEUE_NAME', 'gluon.jasmin_sms')
+exchangeName = os.getenv('AMPQ_EXCHANGE_NAME', 'gluon.smpp.exchange')
 
-consumer = AMQ.Consumer(username=username, password=password, host=host, port=port, queue=queueName,
-                        virtual_host=virtual_host)
+consumer = Consumer(username=username, password=password, host=host, port=port, queue=queueName,
+                    virtual_host=virtual_host)
 channel = consumer.get_channel()
 jasmin = Jasmin('jcliadmin', 'jclipwd')
 jasmin_processor = JasminProcess(jasmin=jasmin)
