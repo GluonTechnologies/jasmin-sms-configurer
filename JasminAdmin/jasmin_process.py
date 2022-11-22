@@ -17,7 +17,7 @@ class JasminProcess(object):
         password = os.getenv('AMPQ_PASSWORD', 'password123')
         self.exchangeName = os.getenv('AMPQ_EXCHANGE_NAME', 'gluon.smpp.exchange')
         self.jasminAdmin = JasminAdmin(jasmin=jasmin)
-        self.jasminAPI = JasminAPI(username='', password='')
+        self.jasminAPI = JasminAPI()
         self.publisher = Publisher(username=username, password=password, host=host, port=port,
                                    virtual_host=virtual_host)
         self.id = {'action': 'CONFIGURE', 'method': 'ADD', }
@@ -57,4 +57,7 @@ class JasminProcess(object):
             self.publisher.publish(json.dumps(response), self.exchangeName, self.exchangeName, self.exchangeName)
 
     def process_sms(self, json_message):
+        response = None
+        if str(json_message['action']).lower() == 'send':
+            self.jasminAPI.send_sms_data(json_message['data'])
         pass

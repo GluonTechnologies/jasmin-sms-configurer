@@ -15,10 +15,13 @@ password = os.getenv('AMPQ_PASSWORD', 'password123')
 queueName = os.getenv('AMPQ_QUEUE_NAME', 'gluon.jasmin_sms')
 exchangeName = os.getenv('AMPQ_EXCHANGE_NAME', 'gluon.smpp.exchange')
 
+jasminHost = os.getenv('JASMIN_HOST', '127.0.0.1')
+jasminPort = os.getenv('JASMIN_PORT', 8990)
+
 consumer = Consumer(username=username, password=password, host=host, port=port, queue=queueName,
                     virtual_host=virtual_host)
 channel = consumer.get_channel()
-jasmin = Jasmin('jcliadmin', 'jclipwd')
+jasmin = Jasmin('jcliadmin', 'jclipwd', host=jasminHost, port=jasminPort)
 jasmin_processor = JasminProcess(jasmin=jasmin)
 
 
