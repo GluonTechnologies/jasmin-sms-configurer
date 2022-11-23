@@ -4,11 +4,10 @@ import requests
 
 class JasminAPI(object):
     def __init__(self, username: str = 'gluon', password: str = 'password', jasmin_host='jasmin_sms_jasmin',
-                 delivery_url='http://127.0.0.1/received'):
+                 jasmin_api_port: int = 1401, delivery_url='http://127.0.0.1/received'):
         jasmin_host = socket.gethostbyname(jasmin_host) if str(jasmin_host).startswith(
             'jasmin_sms_jasmin') else jasmin_host
-        jasmin_host = 'http://' + jasmin_host + ':1401/send?%s'
-        self.root_url = jasmin_host
+        self.root_url = 'http://' + jasmin_host + ':' + str(jasmin_api_port) + '/send?%s'
         self.delivery_url = delivery_url
         self.username = username
         self.password = password
