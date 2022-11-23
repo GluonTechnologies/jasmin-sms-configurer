@@ -3,7 +3,8 @@ import socket
 
 
 class Jasmin(object):
-    def __init__(self, username: str, password: str, host: str = '127.0.0.1', port: int = 8990):
+    def __init__(self, username: str = 'jcliadmin', password: str = 'jclipwd', host: str = '127.0.0.1',
+                 port: int = 8990):
         self.__user_name = username
         self.__password = password
         host = socket.gethostbyname(host) if str(host).startswith('jasmin_sms_jasmin') else host

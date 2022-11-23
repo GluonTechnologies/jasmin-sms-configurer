@@ -21,7 +21,7 @@ jasminPort = os.getenv('JASMIN_PORT', 8990)
 consumer = Consumer(username=username, password=password, host=host, port=port, queue=queueName,
                     virtual_host=virtual_host)
 channel = consumer.get_channel()
-jasmin = Jasmin('jcliadmin', 'jclipwd', host=jasminHost, port=jasminPort)
+jasmin = Jasmin(host=jasminHost, port=jasminPort)
 jasmin_processor = JasminProcess(jasmin=jasmin)
 
 
