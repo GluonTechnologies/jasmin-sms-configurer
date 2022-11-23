@@ -32,13 +32,13 @@ publisher = Publisher(username=username, password=password, host=host, port=port
 # message_action = {'task': 'configure', 'action': 'mt-router', 'method': 'add',
 #                   'data': {'smpp_client_id': 'smpp_1'}}
 
-# message_action = {'task': 'configure', 'action': 'mo-router', 'method': 'add',
-#                   'data': {'http_client_id': 'gluon_01'}}
+message_action = {'task': 'configure', 'action': 'mo-router', 'method': 'add',
+                  'data': {'http_client_id': 'gluon_01'}}
 
 
 # SMS
 
-message_action = {'task': 'sms', 'action': 'send',
-                  'data': {'to': '251944272962', 'from': '8181', 'message': 'This is a Test Message'}}
+# message_action = {'task': 'sms', 'action': 'send',
+#                   'data': {'to': '251944272962', 'from': '8181', 'message': 'This is a Test Message'}}
 publisher.publish(message=json.dumps(message_action), queue=queueName, exchange='exchange',
                   routing_key='some_secure_key')
