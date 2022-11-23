@@ -59,7 +59,5 @@ class JasminProcess(object):
             self.publisher.publish(json.dumps(response), self.exchangeName, self.exchangeName, self.exchangeName)
 
     def process_sms(self, json_message):
-        response = None
         if str(json_message['action']).lower() == 'send':
             self.jasminAPI.send_sms_data(json_message['data'])
-        pass

@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import json
 
 load_dotenv()
-host = os.getenv('AMPQ_HOST0', '127.0.0.1')
+host = os.getenv('AMPQ_HOST', '127.0.0.1')
 virtual_host = os.getenv('AMPQ_VHOST', '/')
 port = os.getenv('AMPQ_PORT', '5672')
 username = os.getenv('AMPQ_USERNAME', 'admin')
@@ -21,7 +21,7 @@ publisher = Publisher(username=username, password=password, host=host, port=port
 
 # HTTP Actions
 # message_action = {'task': 'configure', 'action': 'http', 'method': 'add',
-#                   'data': {'url': 'http://10.10.20.125/receive-sms/mo.php', 'method': 'POST', 'client_id': 'gluon_01'}}
+#                   'data': {'url': 'http://127.0.0.1:8000/received_message', 'method': 'POST', 'client_id': 'gluon_01'}}
 
 # SMPP
 # message_action = {'task': 'configure', 'action': 'smpp', 'method': 'start',
@@ -31,6 +31,9 @@ publisher = Publisher(username=username, password=password, host=host, port=port
 # ROUTER
 # message_action = {'task': 'configure', 'action': 'mt-router', 'method': 'add',
 #                   'data': {'smpp_client_id': 'smpp_1'}}
+
+# message_action = {'task': 'configure', 'action': 'mo-router', 'method': 'add',
+#                   'data': {'http_client_id': 'gluon_01'}}
 
 
 # SMS

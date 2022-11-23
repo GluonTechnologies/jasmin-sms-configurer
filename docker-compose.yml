@@ -1,18 +1,18 @@
 version: "3"
 
 services:
-#  jasmin_sms_configurer:
-#    build: .
-#    image: gluontech/jasmin_sms_configurer
-#    restart: unless-stopped
-#    environment:
-#      - AMPQ_HOST=${AMPQ_HOST}
-#      - AMPQ_VHOST=${AMPQ_VHOST}
-#      - AMPQ_PORT=${AMPQ_PORT}
-#      - AMPQ_USERNAME=${AMPQ_USERNAME}
-#      - AMPQ_PASSWORD=${AMPQ_PASSWORD}
-#      - AMPQ_QUEUE_NAME=${AMPQ_QUEUE_NAME}
-#      - AMPQ_EXCHANGE_NAME=${AMPQ_EXCHANGE_NAME}
+  jasmin_sms_configurer:
+    build: .
+    image: gluontech/jasmin_sms_configurer
+    restart: unless-stopped
+    environment:
+      - AMPQ_HOST=${AMPQ_HOST}
+      - AMPQ_VHOST=${AMPQ_VHOST}
+      - AMPQ_PORT=${AMPQ_PORT}
+      - AMPQ_USERNAME=${AMPQ_USERNAME}
+      - AMPQ_PASSWORD=${AMPQ_PASSWORD}
+      - AMPQ_QUEUE_NAME=${AMPQ_QUEUE_NAME}
+      - AMPQ_EXCHANGE_NAME=${AMPQ_EXCHANGE_NAME}
 
   jasmin_sms_redis:
     image: redis:alpine

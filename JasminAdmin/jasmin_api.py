@@ -14,11 +14,9 @@ class JasminAPI(object):
 
     def send_sms(self, params: dict):
         message_body = {'username': self.username, 'password': self.password, **params}
-        # resp = urllib.request.urlopen(self.root_url + "/send?%s" % urllib.parse.urlencode(message_body)).read()
-        resp = requests.get(self.root_url, params=message_body)
+        return requests.get(self.root_url, params=message_body)
 
     def send_sms_data(self, params: dict):
-        print('send_sms_data')
         message = params['message'] if params.get('message') else ''
         message_body = {
             'username': self.username,
@@ -32,6 +30,5 @@ class JasminAPI(object):
             'to': params.get('to'),
             'from': params.get('from')
         }
-        print(self.root_url)
         resp = requests.get(self.root_url, params=message_body)
         print(resp.content)

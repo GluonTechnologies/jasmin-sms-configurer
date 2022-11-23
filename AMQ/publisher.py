@@ -8,6 +8,7 @@ class Publisher(Thread):
         self.host = host
         self.port = port
         self.credentials = pika.PlainCredentials(username, password)
+        self.virtual_host = virtual_host
         self.connection = pika.BlockingConnection(
             pika.ConnectionParameters(host=host, port=port, credentials=self.credentials, virtual_host=virtual_host))
         self.channel = self.connection.channel()
@@ -15,7 +16,8 @@ class Publisher(Thread):
     def publish(self, message, queue=None, exchange=None, routing_key=None):
         if self.connection.is_closed:
             self.connection = pika.BlockingConnection(
-                pika.ConnectionParameters(host=self.host, port=self.port, credentials=self.credentials))
+                pika.ConnectionParameters(host=self.host, port=self.port, credentials=self.credentials,
+                                          virtual_host=self.virtual_host))
             self.channel = self.connection.channel()
         if self.channel.is_closed:
             self.channel = self.connection.channel()
