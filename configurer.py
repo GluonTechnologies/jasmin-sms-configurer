@@ -22,7 +22,7 @@ ADD_ACTION = 'add'
 GROUP_NAME = 'group1'
 HTTP_CLIENT_ID = 'http1'
 SMPP_CLIENT_ID = 'smpp1'
-SMPP_HOST = '192.168.176.126'
+SMPP_HOST = '192.168.174.126'
 SMPP_PORT = '2778'
 SMPP_USER = '014978'
 SMPP_PASSWORD = 'Far$4321'
@@ -34,7 +34,7 @@ configs = [
     {'task': 'configure', 'action': 'user', 'method': ADD_ACTION,
      'data': {'username': 'gluon', 'password': 'password', 'group': GROUP_NAME}},
     {'task': 'configure', 'action': 'http', 'method': ADD_ACTION,
-     'data': {'url': 'http://192.168.176.129:3001/received_message', 'method': 'POST', 'client_id': HTTP_CLIENT_ID}},
+     'data': {'url': 'http://192.168.174.129:3001/received_message', 'method': 'POST', 'client_id': HTTP_CLIENT_ID}},
     {'task': 'configure', 'action': 'smpp', 'method': ADD_ACTION,
      'data': {'smpp_id': SMPP_CLIENT_ID, 'host': SMPP_HOST, 'port': SMPP_PORT, 'username': SMPP_USER,
               'password': SMPP_PASSWORD}},
