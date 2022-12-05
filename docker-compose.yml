@@ -13,6 +13,8 @@ services:
       - AMPQ_PASSWORD=${AMPQ_PASSWORD}
       - AMPQ_QUEUE_NAME=${AMPQ_QUEUE_NAME}
       - AMPQ_EXCHANGE_NAME=${AMPQ_EXCHANGE_NAME}
+      - JASMIN_SMS_SYNC_API_HOST=${JASMIN_SMS_SYNC_API_HOST}
+      - JASMIN_SMS_SYNC_API_PORT=${JASMIN_SMS_SYNC_API_PORT}
 
   jasmin_sms_redis:
     image: redis:alpine
@@ -26,6 +28,9 @@ services:
     image: jookies/jasmin:latest
     restart: unless-stopped
     container_name: jasmin
+    volumes:
+      - ./gluon/store:/etc/jasmin/store
+      - ./gluon/log:/var/log/jasmin
     ports:
       - 2775:2775
       - 8990:8990

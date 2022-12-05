@@ -1,16 +1,22 @@
+import os
 import socket
 import requests
 
 
 class JasminAPI(object):
     def __init__(self, username: str = 'gluon', password: str = 'password', jasmin_host='jasmin_sms_jasmin',
-                 jasmin_api_port: int = 1401, delivery_url='http://127.0.0.1/received'):
+                 jasmin_port: int = 1401):
         jasmin_host = socket.gethostbyname(jasmin_host) if str(jasmin_host).startswith(
             'jasmin_sms_jasmin') else jasmin_host
-        self.root_url = 'http://' + jasmin_host + ':' + str(jasmin_api_port) + '/send?%s'
-        self.delivery_url = delivery_url
+        self.root_url = 'http://' + jasmin_host + ':' + str(jasmin_port) + '/send?%s'
         self.username = username
         self.password = password
+
+        jasmin_sync_api_host = os.getenv('JASMIN_SMS_SYNC_API_HOST', '127.0.0.1')
+        jasmin_sync_api_port = os.getenv('JASMIN_SMS_SYNC_API_PORT', '3001')
+        delivery_host = socket.gethostbyname(jasmin_sync_api_host) if str(jasmin_sync_api_host).startswith(
+            'jasmin_') else jasmin_sync_api_host
+        self.delivery_url = 'http://' + delivery_host + ':' + str(jasmin_sync_api_port) + '/delivery_report'
 
     def send_sms(self, params: dict):
         message_body = {'username': self.username, 'password': self.password, **params}

@@ -25,20 +25,20 @@ publisher = Publisher(username=username, password=password, host=host, port=port
 
 # SMPP
 # message_action = {'task': 'configure', 'action': 'smpp', 'method': 'start',
-#                   'data': {'smpp_id': 'smpp_1', 'host': '10.190.10.16', 'port': '8331', 'username': 'gluon',
-#                            'password': 'password'}}
+#                   'data': {'smpp_id': 'smpp1', 'host': '10.190.10.16', 'port': '8313', 'username': '014978',
+#                            'password': 'Far$4321'}}
 
 # ROUTER
 # message_action = {'task': 'configure', 'action': 'mt-router', 'method': 'add',
 #                   'data': {'smpp_client_id': 'smpp_1'}}
 
-message_action = {'task': 'configure', 'action': 'mo-router', 'method': 'add',
-                  'data': {'http_client_id': 'gluon_01'}}
+# message_action = {'task': 'configure', 'action': 'mo-router', 'method': 'add',
+#                   'data': {'http_client_id': 'gluon_01'}}
 
 
 # SMS
 
-# message_action = {'task': 'sms', 'action': 'send',
-#                   'data': {'to': '251944272962', 'from': '8181', 'message': 'This is a Test Message'}}
+message_action = {'task': 'sms', 'action': 'send',
+                  'data': {'to': '251944272962', 'from': '9543', 'message': 'ይህ በአማርኛ የተሞከረ መልዕክት ነው'}}
 publisher.publish(message=json.dumps(message_action), queue=queueName, exchange='exchange',
                   routing_key='some_secure_key')

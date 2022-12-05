@@ -54,7 +54,6 @@ class JasminProcess(object):
             response = self.jasminAdmin.router.process_mo_router_action(json_message)
         else:
             print("Whoops! Nothing to configure")
-        # Push response if exists
         if response is not None:
             self.publisher.publish(json.dumps(response), self.exchangeName, self.exchangeName, self.exchangeName)
 
