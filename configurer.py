@@ -34,7 +34,7 @@ configs = [
     {'task': 'configure', 'action': 'user', 'method': ADD_ACTION,
      'data': {'username': 'gluon', 'password': 'password', 'group': GROUP_NAME}},
     {'task': 'configure', 'action': 'http', 'method': ADD_ACTION,
-     'data': {'url': 'http://192.168.174.129:3001/received_message', 'method': 'POST', 'client_id': HTTP_CLIENT_ID}},
+     'data': {'url': 'http://jasmin_sms_sync_api:5000/received_message', 'method': 'POST', 'client_id': HTTP_CLIENT_ID}},
     {'task': 'configure', 'action': 'smpp', 'method': ADD_ACTION,
      'data': {'smpp_id': SMPP_CLIENT_ID, 'host': SMPP_HOST, 'port': SMPP_PORT, 'username': SMPP_USER,
               'password': SMPP_PASSWORD}},
