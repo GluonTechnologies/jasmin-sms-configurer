@@ -61,6 +61,7 @@ on_message_callback = functools.partial(on_message, args=(channel.connection, []
 channel.basic_qos(prefetch_count=1)
 channel.basic_consume(queue=queueName, on_message_callback=on_message_callback)
 try:
+    print("Consuming configuration tasks . . .")
     channel.start_consuming()
 except KeyboardInterrupt:
     channel.stop_consuming()

@@ -15,6 +15,7 @@ class JasminProcess(object):
         username = os.getenv('AMPQ_USERNAME', 'admin')
         password = os.getenv('AMPQ_PASSWORD', 'password123')
 
+        self.queueName = os.getenv('AMPQ_QUEUE_NAME', 'gluon.smpp.queue')
         self.exchangeName = os.getenv('AMPQ_EXCHANGE_NAME', 'gluon.smpp.exchange')
         self.jasminAdmin = JasminAdmin(jasmin=jasmin)
         self.publisher = Publisher(username=username, password=password, host=host, port=port,
@@ -50,4 +51,5 @@ class JasminProcess(object):
         else:
             print("Whoops! Nothing to configure")
         if response is not None:
-            self.publisher.publish(json.dumps(response), self.exchangeName, self.exchangeName, self.exchangeName)
+            self.publisher.publish(json.dumps(response), self.queueName + '.exceptions', self.exchangeName + '.error',
+                                   self.exchangeName)
