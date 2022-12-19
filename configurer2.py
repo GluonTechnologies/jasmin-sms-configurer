@@ -22,10 +22,10 @@ ADD_ACTION = 'add'
 GROUP_NAME = 'group1'
 HTTP_CLIENT_ID = 'http1'
 SMPP_CLIENT_ID = 'smpp1'
-SMPP_HOST = '10.190.10.16'
-SMPP_PORT = '8313'
-SMPP_USER = '014978'
-SMPP_PASSWORD = 'Far$4321'
+SMPP_HOST = '196.188.236.125'
+SMPP_PORT = '5634'
+SMPP_USER = 'gluon'
+SMPP_PASSWORD = 'password'
 # -----------------------------------------------------
 #######################################################
 
