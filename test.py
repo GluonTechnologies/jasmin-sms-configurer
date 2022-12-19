@@ -2,6 +2,7 @@ import os
 from AMQ import Publisher
 from dotenv import load_dotenv
 import json
+import time
 
 load_dotenv()
 host = os.getenv('AMPQ_HOST', '127.0.0.1')
@@ -36,9 +37,15 @@ publisher = Publisher(username=username, password=password, host=host, port=port
 #                   'data': {'http_client_id': 'gluon_01'}}
 
 
-# SMS
+# SMS 251936515136
 
 message_action = {'task': 'sms', 'action': 'send',
-                  'data': {'to': '251944272962', 'from': '9543', 'message': 'ይህ በአማርኛ የተሞከረ መልዕክት ነው'}}
+                  'data': {'to': '251944272962', 'from': 'bb', 'message': 'this is a message from what'}}
 publisher.publish(message=json.dumps(message_action), queue=queueName, exchange='exchange',
                   routing_key='some_secure_key')
+
+# for i in range(20):
+#     message_action = {'task': 'sms', 'action': 'send',
+#                       'data': {'to': '251944272962', 'from': '9543', 'message': 'this is a message: ' + str(i)}}
+#     publisher.publish(message=json.dumps(message_action), queue=queueName, exchange='exchange',
+#                       routing_key='some_secure_key')
