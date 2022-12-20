@@ -1,6 +1,6 @@
 from Jasmin import Jasmin
-from Routers.MTRouter import MTRouter
-from Routers.MORouter import MORouter
+from Jasmin.Routers.MTRouter import MTRouter
+from Jasmin.Routers.MORouter import MORouter
 
 
 class JasminRouter(MTRouter, MORouter):

@@ -33,6 +33,7 @@ services:
     volumes:
       - ./gluon/store:/etc/jasmin/store
       - ./gluon/log:/var/log/jasmin
+      - ./jasmin.cfg:/etc/jasmin/jasmin.cfg
     ports:
       - 2775:2775
       - 8990:8990

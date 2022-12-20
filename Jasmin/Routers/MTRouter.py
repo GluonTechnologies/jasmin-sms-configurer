@@ -26,7 +26,7 @@ class MTRouter:
         time.sleep(1)
         print("MT-ROUTER", self.telnet.read_very_eager())
 
-    def add_mt_router(self, smpp_client_id: str, filters: str, rate: str = '0.01', order: int = 10,
+    def add_mt_router(self, smpp_client_id: str, filters: str = None, rate: str = '0.01', order: int = 10,
                       route_type: str = 'StaticMTRoute'):
         self.telnet.write(b'mtrouter -a\n')
         action = 'type ' + route_type + '\n'
