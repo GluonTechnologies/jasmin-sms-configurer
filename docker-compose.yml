@@ -44,10 +44,3 @@ services:
     environment:
       REDIS_CLIENT_HOST: jasmin_sms_redis
       AMQP_BROKER_HOST: jasmin_sms_amq
-
-  jasmin_sms_server_ampq:
-    image: rabbitmq:3-management
-    restart: unless-stopped
-    ports:
-      - 15672:15672
-      - 5672:5672
